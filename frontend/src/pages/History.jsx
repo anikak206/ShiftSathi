@@ -63,10 +63,11 @@ export default function History() {
                 <td className="p-3">{i.severity}</td>
                 <td className="p-3">{i.status}</td>
                 <td className="p-3 max-w-xs truncate">{i.description}</td>
-                <td className="p-3">
+                <td className="p-3 space-x-2">
                   {i.status !== 'resolved' && (
                     <button onClick={() => updateStatus(i.id, 'resolved')} className="text-green-400 text-xs hover:underline">Resolve</button>
                   )}
+                  <a href={`/api/incidents/${i.id}/export`} className="text-blue-400 text-xs hover:underline">Export</a>
                 </td>
               </tr>
             ))}

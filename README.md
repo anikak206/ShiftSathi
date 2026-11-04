@@ -1,5 +1,7 @@
 # ShiftSathi — Voice-First Industrial Intelligence Assistant
 
+![Python](https://img.shields.io/badge/Python-3.11+-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green) ![React](https://img.shields.io/badge/React-18-61dafb) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
 ShiftSathi lets factory workers report machine problems by voice. It transcribes speech (Hindi/English/Hinglish) using Gnani Prisma, extracts structured incident fields with an LLM, asks intelligent follow-up questions, reads back a confirmation using Gnani Timbre, and generates a professional incident report plus shift handover. A supervisor dashboard provides analytics and history.
 
 ## Features
