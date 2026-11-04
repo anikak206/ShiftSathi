@@ -1,0 +1,27 @@
+[
+  {
+    "id": "t1",
+    "transcript": "Machine number five mein unusual vibration aa raha hai since morning.",
+    "expected": {"machine_id": "5", "category": "vibration", "severity": "medium"}
+  },
+  {
+    "id": "t2",
+    "transcript": "Pump P-12 in production area line 2 has oil leak, machine stopped, critical.",
+    "expected": {"machine_id": "P-12", "category": "leak", "severity": "critical"}
+  },
+  {
+    "id": "t3",
+    "transcript": "Conveyor belt 7 temperature 95 degree celsius overheating, production affected.",
+    "expected": {"machine_id": "7", "category": "overheating", "severity": "high"}
+  },
+  {
+    "id": "t4",
+    "transcript": "Strange grinding noise from motor M3, bearing maybe damaged.",
+    "expected": {"machine_id": "M3", "category": "noise", "severity": "medium"}
+  },
+  {
+    "id": "t5",
+    "transcript": "Machine 9 electrical spark and smoke, emergency shutdown done.",
+    "expected": {"machine_id": "9", "category": "safety", "severity": "critical"}
+  }
+]
