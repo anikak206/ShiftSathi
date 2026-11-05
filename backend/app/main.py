@@ -4,7 +4,17 @@ from .config import APP_NAME, CORS_ORIGINS, GNANI_API_KEY_ID, LLM_API_KEY
 from .db import init_db
 from .routers import voice, sessions, incidents, dashboard, handover, extract, eval
 
+import time as _t
 app = FastAPI(title=APP_NAME)
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start = _t.time()
+    response = await call_next(request)
+    dur = (_t.time() - start) * 1000
+    if request.url.path.startswith("/api"):
+        print(f"{request.method} {request.url.path} -> {response.status_code} ({dur:.1f}ms)")
+    return response
 
 app.add_middleware(
     CORSMiddleware,
