@@ -148,7 +148,7 @@ export default function VoiceReport() {
             <option value="ml-IN">Malayalam (ml-IN)</option>
           </select>
           {!recording ? (
-            <button onClick={startRec} className="flex items-center gap-2 bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg">
+            <button onClick={startRec} aria-label="Start recording" className="flex items-center gap-2 bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg">
               <Mic size={18} /> Record
             </button>
           ) : (
