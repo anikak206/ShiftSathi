@@ -5,6 +5,7 @@ import VoiceReport from './pages/VoiceReport';
 import History from './pages/History';
 import Handover from './pages/Handover';
 import Eval from './pages/Eval';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
           <Route path="/history" element={<History />} />
           <Route path="/handover" element={<Handover />} />
           <Route path="/eval" element={<Eval />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
