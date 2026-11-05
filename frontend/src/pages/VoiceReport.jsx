@@ -179,6 +179,9 @@ export default function VoiceReport() {
           placeholder="Transcript will appear here. You can also type/edit."
           className="w-full bg-slate-800 rounded p-3 text-sm"
         />
+        <button onClick={() => navigator.clipboard?.writeText(transcript)} className="text-xs text-slate-400 hover:text-amber-400">
+          Copy transcript
+        </button>
         <div className="flex gap-3">
           <button onClick={startSession} disabled={busy || !transcript.trim()} className="bg-amber-500 text-slate-900 px-4 py-2 rounded-lg font-semibold disabled:opacity-50">
             Analyze & Start Conversation
