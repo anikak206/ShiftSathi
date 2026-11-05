@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .config import APP_NAME, CORS_ORIGINS
+from .config import APP_NAME, CORS_ORIGINS, GNANI_API_KEY_ID, LLM_API_KEY
 from .db import init_db
 from .routers import voice, sessions, incidents, dashboard, handover, extract, eval
 
@@ -17,6 +17,12 @@ app.add_middleware(
 @app.on_event("startup")
 def on_startup():
     init_db()
+    import logging
+    log = logging.getLogger("shiftsathi")
+    if not GNANI_API_KEY_ID:
+        log.warning("GNANI_API_KEY_ID not set; STT/TTS will run in fallback mode.")
+    if not LLM_API_KEY:
+        log.warning("LLM_API_KEY not set; using heuristic extraction.")
 
 app.include_router(voice.router)
 app.include_router(sessions.router)
