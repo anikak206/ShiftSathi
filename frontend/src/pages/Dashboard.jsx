@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../api';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { AlertTriangle, CheckCircle, Clock, List } from 'lucide-react';
+import Spinner from '../components/Spinner';
 
 const COLORS = ['#ef4444','#f97316','#eab308','#22c55e'];
 
@@ -12,7 +13,7 @@ export default function Dashboard() {
     api('/dashboard/stats').then(setStats).catch(e => setErr(e.message));
   }, []);
   if (err) return <div className="text-red-400">{err}</div>;
-  if (!stats) return <div className="text-slate-400">Loading...</div>;
+  if (!stats) return <Spinner label="Loading dashboard..." />;
   const pieData = Object.entries(stats.priority_distribution || {}).map(([k,v]) => ({ name: k, value: v }));
   const catData = Object.entries(stats.category_distribution || {}).map(([k,v]) => ({ name: k, value: v }));
   return (
