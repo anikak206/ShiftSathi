@@ -28,4 +28,16 @@ app.include_router(eval.router)
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "app": APP_NAME}
+    return {"status": "ok", "app": APP_NAME, "version": "1.0.0"}
+
+@app.get("/health/detailed")
+def health_detailed():
+    from .config import GNANI_API_KEY_ID, LLM_API_KEY
+    return {
+        "status": "ok",
+        "app": APP_NAME,
+        "version": "1.0.0",
+        "gnani_configured": bool(GNANI_API_KEY_ID),
+        "llm_configured": bool(LLM_API_KEY),
+        "database": "sqlite",
+    }
