@@ -2,26 +2,325 @@
   {
     "id": "t1",
     "transcript": "Machine number five mein unusual vibration aa raha hai since morning.",
-    "expected": {"machine_id": "5", "category": "vibration", "severity": "medium"}
+    "expected": {
+      "machine_id": "5",
+      "category": "vibration",
+      "severity": "medium"
+    }
   },
   {
     "id": "t2",
     "transcript": "Pump P-12 in production area line 2 has oil leak, machine stopped, critical.",
-    "expected": {"machine_id": "P-12", "category": "leak", "severity": "critical"}
+    "expected": {
+      "machine_id": "P-12",
+      "category": "leak",
+      "severity": "critical"
+    }
   },
   {
     "id": "t3",
     "transcript": "Conveyor belt 7 temperature 95 degree celsius overheating, production affected.",
-    "expected": {"machine_id": "7", "category": "overheating", "severity": "high"}
+    "expected": {
+      "machine_id": "7",
+      "category": "overheating",
+      "severity": "high"
+    }
   },
   {
     "id": "t4",
     "transcript": "Strange grinding noise from motor M3, bearing maybe damaged.",
-    "expected": {"machine_id": "M3", "category": "noise", "severity": "medium"}
+    "expected": {
+      "machine_id": "M3",
+      "category": "noise",
+      "severity": "medium"
+    }
   },
   {
     "id": "t5",
     "transcript": "Machine 9 electrical spark and smoke, emergency shutdown done.",
-    "expected": {"machine_id": "9", "category": "safety", "severity": "critical"}
+    "expected": {
+      "machine_id": "9",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t6",
+    "transcript": "Machine M-204 mein vibration bahut zyada hai aur temperature 90 degree ke aas-paas hai. Kal se problem chal rahi hai.",
+    "expected": {
+      "machine_id": "M-204",
+      "category": "vibration",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t7",
+    "transcript": "Press P-7 hydraulic leak, oil on floor, slip hazard, machine stopped.",
+    "expected": {
+      "machine_id": "P-7",
+      "category": "leak",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t8",
+    "transcript": "Compressor C-11 unusual noise and vibration since last night, production line 4 affected.",
+    "expected": {
+      "machine_id": "C-11",
+      "category": "noise",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t9",
+    "transcript": "Boiler B-3 temperature 110 celsius, safety valve not working, emergency.",
+    "expected": {
+      "machine_id": "B-3",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t10",
+    "transcript": "Machine 12 belt broken, production stopped, maintenance required.",
+    "expected": {
+      "machine_id": "12",
+      "category": "mechanical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t11",
+    "transcript": "CNC machine 4 spindle vibration and tool wear, quality affected.",
+    "expected": {
+      "machine_id": "4",
+      "category": "vibration",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t12",
+    "transcript": "Furnace F-2 overheating, temperature 1200 degree, smoke visible.",
+    "expected": {
+      "machine_id": "F-2",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t13",
+    "transcript": "Pump P-5 not building pressure, unusual sound, line 1 down.",
+    "expected": {
+      "machine_id": "P-5",
+      "category": "noise",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t14",
+    "transcript": "Conveyor C-9 belt slipping, minor issue, production slightly affected.",
+    "expected": {
+      "machine_id": "C-9",
+      "category": "mechanical",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t15",
+    "transcript": "Machine 20 electrical panel sparking, power tripped, no injury.",
+    "expected": {
+      "machine_id": "20",
+      "category": "electrical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t16",
+    "transcript": "Robot arm R-1 collision with fixture, minor damage, stopped.",
+    "expected": {
+      "machine_id": "R-1",
+      "category": "mechanical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t17",
+    "transcript": "Machine 15 coolant leak, temperature rising, operator cleaned spill.",
+    "expected": {
+      "machine_id": "15",
+      "category": "leak",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t18",
+    "transcript": "Lathe L-8 bearing noise, vibration increased, running but abnormal.",
+    "expected": {
+      "machine_id": "L-8",
+      "category": "noise",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t19",
+    "transcript": "Machine 3 motor overheating, 95 degree, fan not working.",
+    "expected": {
+      "machine_id": "3",
+      "category": "overheating",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t20",
+    "transcript": "Press P-9 die misalignment, quality defect, minor.",
+    "expected": {
+      "machine_id": "P-9",
+      "category": "mechanical",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t21",
+    "transcript": "Machine 11 hydraulic hose burst, oil spray, machine stopped immediately.",
+    "expected": {
+      "machine_id": "11",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t22",
+    "transcript": "Conveyor C-6 jam, material stuck, cleared by operator.",
+    "expected": {
+      "machine_id": "C-6",
+      "category": "mechanical",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t23",
+    "transcript": "Machine 18 gearbox grinding noise, vibration high, production stopped.",
+    "expected": {
+      "machine_id": "18",
+      "category": "noise",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t24",
+    "transcript": "Boiler B-1 pressure fluctuating, safety concern, operator monitoring.",
+    "expected": {
+      "machine_id": "B-1",
+      "category": "safety",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t25",
+    "transcript": "Machine 22 sensor reading abnormal, 45.5 rpm, auto shutdown triggered.",
+    "expected": {
+      "machine_id": "22",
+      "category": "general",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t26",
+    "transcript": "Pump P-3 cavitation noise, flow reduced, not critical.",
+    "expected": {
+      "machine_id": "P-3",
+      "category": "noise",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t27",
+    "transcript": "Machine 8 coolant temperature 80 degree, high but within limits.",
+    "expected": {
+      "machine_id": "8",
+      "category": "overheating",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t28",
+    "transcript": "Machine 13 conveyor stopped, belt torn, maintenance called.",
+    "expected": {
+      "machine_id": "13",
+      "category": "mechanical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t29",
+    "transcript": "Machine 6 motor vibration, no readings available, routine check.",
+    "expected": {
+      "machine_id": "6",
+      "category": "vibration",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t30",
+    "transcript": "Machine 14 safety guard missing, operator reported, machine isolated.",
+    "expected": {
+      "machine_id": "14",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t31",
+    "transcript": "Pump P-1 excessive vibration and heat, stopped by operator, no injury.",
+    "expected": {
+      "machine_id": "P-1",
+      "category": "vibration",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t32",
+    "transcript": "Machine 21 low air pressure, pneumatic tools not working, production slowed.",
+    "expected": {
+      "machine_id": "21",
+      "category": "mechanical",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t33",
+    "transcript": "Machine 10 spindle temperature 65 degree, normal operation.",
+    "expected": {
+      "machine_id": "10",
+      "category": "overheating",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t34",
+    "transcript": "Machine 19 conveyor belt worn, scheduled replacement, no urgency.",
+    "expected": {
+      "machine_id": "19",
+      "category": "mechanical",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t35",
+    "transcript": "Machine 16 electrical short, burning smell, power off, area evacuated.",
+    "expected": {
+      "machine_id": "16",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t36",
+    "transcript": "Machine 17 unusual vibration, no other details provided by operator.",
+    "expected": {
+      "machine_id": "17",
+      "category": "vibration",
+      "severity": "medium"
+    }
   }
 ]

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from ..services.sessions import start_session, get_session, answer_session, build_confirmation, confirm_session
+from ..services.sessions import start_session, get_session, answer_session, build_confirmation, confirm_session, cancel_session
 from ..db import get_db
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -49,3 +49,10 @@ def confirm(sid: str, req: ConfirmReq, db: Session = Depends(get_db)):
         raise HTTPException(404, "session not found")
     from ..services.sessions import incident_to_dict
     return incident_to_dict(inc)
+
+@router.post("/{sid}/cancel")
+def cancel(sid: str):
+    s = cancel_session(sid)
+    if not s:
+        raise HTTPException(404, "session not found")
+    return {"cancelled": True, "session_id": sid}

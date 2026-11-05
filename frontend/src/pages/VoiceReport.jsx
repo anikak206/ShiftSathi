@@ -138,6 +138,14 @@ export default function VoiceReport() {
           <select value={language} onChange={e => setLanguage(e.target.value)} className="bg-slate-800 rounded px-3 py-2 text-sm">
             <option value="hi-IN">Hindi (hi-IN)</option>
             <option value="en-IN">English (en-IN)</option>
+            <option value="ta-IN">Tamil (ta-IN)</option>
+            <option value="te-IN">Telugu (te-IN)</option>
+            <option value="bn-IN">Bengali (bn-IN)</option>
+            <option value="mr-IN">Marathi (mr-IN)</option>
+            <option value="kn-IN">Kannada (kn-IN)</option>
+            <option value="gu-IN">Gujarati (gu-IN)</option>
+            <option value="pa-IN">Punjabi (pa-IN)</option>
+            <option value="ml-IN">Malayalam (ml-IN)</option>
           </select>
           {!recording ? (
             <button onClick={startRec} className="flex items-center gap-2 bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg">
@@ -240,7 +248,11 @@ function ConfirmationForm({ session, setSession, confirm, busy }) {
         <Field label="Category" value={f.category || ''} onChange={v => upd('category', v)} />
         <Field label="Severity" value={f.severity || ''} onChange={v => upd('severity', v)} />
         <Field label="Occurred At" value={f.occurred_at || ''} onChange={v => upd('occurred_at', v)} />
+        <Field label="Duration" value={f.duration || ''} onChange={v => upd('duration', v)} />
+        <Field label="Temperature" value={f.temperature || ''} onChange={v => upd('temperature', v)} />
         <Field label="Sensor Readings (comma)" value={(f.sensor_readings || []).join(', ')} onChange={v => upd('sensor_readings', v.split(',').map(x=>x.trim()).filter(Boolean))} />
+        <Field label="Operational Impact" value={f.operational_impact || ''} onChange={v => upd('operational_impact', v)} />
+        <Field label="Required Action" value={f.required_action || ''} onChange={v => upd('required_action', v)} />
       </div>
       <div>
         <label className="text-xs text-slate-400">Description</label>
@@ -250,9 +262,17 @@ function ConfirmationForm({ session, setSession, confirm, busy }) {
         <label className="text-xs text-slate-400">Actions Taken (comma)</label>
         <input value={(f.actions_taken || []).join(', ')} onChange={e => upd('actions_taken', e.target.value.split(',').map(x=>x.trim()).filter(Boolean))} className="w-full bg-slate-800 rounded p-2 text-sm" />
       </div>
-      <button onClick={confirm} disabled={busy} className="bg-green-600 hover:bg-green-500 px-5 py-2 rounded-lg font-semibold disabled:opacity-50">
-        Confirm & Create Incident
-      </button>
+      {session.fields?.inferred_fields?.length > 0 && (
+        <div className="text-xs text-amber-400">Inferred (not explicitly stated): {session.fields.inferred_fields.join(', ')}</div>
+      )}
+      <div className="flex gap-3">
+        <button onClick={confirm} disabled={busy} className="bg-green-600 hover:bg-green-500 px-5 py-2 rounded-lg font-semibold disabled:opacity-50">
+          Confirm & Create Incident
+        </button>
+        <button onClick={async () => { try { await api(`/sessions/${session.id}/cancel`, { method: 'POST' }); } catch(e){} setSession(null); }} className="bg-slate-700 px-4 py-2 rounded-lg text-sm">
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

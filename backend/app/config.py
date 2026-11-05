@@ -20,6 +20,6 @@ LLM_BASE_URL = env("LLM_BASE_URL", "https://api.openai.com/v1")
 LLM_MODEL = env("LLM_MODEL", "gpt-4o-mini")
 LLM_PROVIDER = env("LLM_PROVIDER", "openai")
 
-DATABASE_URL = env("DATABASE_URL", f"sqlite:///{BASE_DIR / 'data' / 'shiftsathi.db'}")
+DATABASE_URL = env("DATABASE_URL", f"sqlite:///{(BASE_DIR / 'data' / 'shiftsathi.db').as_posix()}")
 CORS_ORIGINS = [o.strip() for o in env("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if o.strip()]
 APP_NAME = "ShiftSathi"

@@ -4,6 +4,22 @@
 
 ShiftSathi lets factory workers report machine problems by voice. It transcribes speech (Hindi/English/Hinglish) using Gnani Prisma, extracts structured incident fields with an LLM, asks intelligent follow-up questions, reads back a confirmation using Gnani Timbre, and generates a professional incident report plus shift handover. A supervisor dashboard provides analytics and history.
 
+## Architecture
+
+```mermaid
+flowchart LR
+  W[Worker] -->|voice| FE[React Frontend]
+  FE -->|audio| STT[Gnani Prisma STT]
+  STT -->|transcript| LLM[LLM Extraction]
+  LLM -->|fields + missing| FU[Follow-up Engine]
+  FU -->|questions| TTS[Gnani Timbre TTS]
+  TTS -->|speech| W
+  W -->|confirm| API[FastAPI]
+  API --> DB[(SQLite)]
+  DB --> DASH[Supervisor Dashboard]
+  DB --> HO[Shift Handover]
+```
+
 ## Features
 - Voice recording + audio upload
 - Gnani Prisma STT (code-mixed Hinglish)

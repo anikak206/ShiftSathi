@@ -39,4 +39,4 @@ def test_dashboard():
 def test_eval_run():
     r = client.post("/api/eval/run")
     assert r.status_code == 200
-    assert r.json()["summary"]["samples"] == 5
+    assert r.json()["summary"]["samples"] == 36

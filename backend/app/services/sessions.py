@@ -32,6 +32,13 @@ async def start_session(transcript: str):
 def get_session(sid):
     return SESSIONS.get(sid)
 
+def cancel_session(sid):
+    s = SESSIONS.get(sid)
+    if not s:
+        return None
+    s["status"] = "cancelled"
+    return s
+
 async def answer_session(sid: str, answer: str):
     s = SESSIONS.get(sid)
     if not s:
@@ -68,6 +75,11 @@ def confirm_session(sid: str, edited_fields: dict, db: Session):
     s = SESSIONS.get(sid)
     if not s:
         return None
+    if s.get("status") == "confirmed" and s.get("incident_id"):
+        # idempotent: return existing
+        existing = db.query(Incident).filter(Incident.id == s["incident_id"]).first()
+        if existing:
+            return existing
     f = dict(s["fields"])
     f.update(edited_fields or {})
     inc_id = "INC-" + str(uuid.uuid4())[:8].upper()
@@ -79,10 +91,18 @@ def confirm_session(sid: str, edited_fields: dict, db: Session):
         category=f.get("category"),
         severity=f.get("severity"),
         occurred_at=f.get("occurred_at"),
+        duration=f.get("duration"),
         sensor_readings=json.dumps(f.get("sensor_readings") or []),
+        temperature=f.get("temperature"),
+        operational_impact=f.get("operational_impact"),
+        safety_implications=f.get("safety_implications"),
         actions_taken=json.dumps(f.get("actions_taken") or []),
+        required_action=f.get("required_action"),
+        reported_by=f.get("reported_by"),
+        inferred_fields=json.dumps(f.get("inferred_fields") or []),
         missing_info=json.dumps(s.get("missing_fields") or []),
         recommended_next_steps=json.dumps(recommended_steps(f, s.get("missing_fields") or [])),
+        corrections=json.dumps(s.get("answers") or []),
         status="open",
         confirmation_status="confirmed",
         transcript=s["transcript"],
@@ -120,9 +140,17 @@ def incident_to_dict(inc: Incident):
         "severity": inc.severity,
         "occurred_at": inc.occurred_at,
         "sensor_readings": json.loads(inc.sensor_readings) if inc.sensor_readings else [],
+        "temperature": inc.temperature,
+        "duration": inc.duration,
+        "operational_impact": inc.operational_impact,
+        "safety_implications": inc.safety_implications,
         "actions_taken": json.loads(inc.actions_taken) if inc.actions_taken else [],
+        "required_action": inc.required_action,
+        "reported_by": inc.reported_by,
+        "inferred_fields": json.loads(inc.inferred_fields) if inc.inferred_fields else [],
         "missing_info": json.loads(inc.missing_info) if inc.missing_info else [],
         "recommended_next_steps": json.loads(inc.recommended_next_steps) if inc.recommended_next_steps else [],
+        "corrections": json.loads(inc.corrections) if inc.corrections else [],
         "status": inc.status,
         "confirmation_status": inc.confirmation_status,
         "transcript": inc.transcript,

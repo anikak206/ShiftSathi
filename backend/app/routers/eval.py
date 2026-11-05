@@ -1,4 +1,4 @@
-import json, os
+import json, os, time
 from fastapi import APIRouter
 from ..services.llm import extract as llm_extract
 
@@ -17,9 +17,11 @@ async def run_eval():
         data = json.load(f)
     results = []
     field_correct = 0; total_fields = 0
-    missing_detected = 0
+    latencies = []
     for item in data:
+        t0 = time.perf_counter()
         r = await llm_extract(item["transcript"])
+        latencies.append((time.perf_counter() - t0) * 1000)
         f = r["fields"]
         exp = item["expected"]
         # field accuracy for machine_id, category, severity
@@ -38,6 +40,7 @@ async def run_eval():
             "missing_fields": r["missing_fields"],
             "questions": r["questions"],
             "source": r.get("source"),
+            "latency_ms": round(latencies[-1], 2),
         })
     return {
         "summary": {
@@ -45,6 +48,8 @@ async def run_eval():
             "field_accuracy": round(field_correct/total_fields, 3) if total_fields else 0,
             "fields_checked": total_fields,
             "fields_correct": field_correct,
+            "avg_latency_ms": round(sum(latencies)/len(latencies), 2) if latencies else 0,
+            "max_latency_ms": round(max(latencies), 2) if latencies else 0,
         },
         "results": results,
     }
