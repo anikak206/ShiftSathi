@@ -1,7 +1,7 @@
 # ShiftSathi Evaluation Report
 
 ## Method
-Small manually prepared dataset of 5 Hinglish/English industrial incident utterances.
+Manually prepared dataset of 50 industrial incident utterances (English/Hinglish).
 Metrics: field extraction accuracy (machine_id, category, severity), missing-field detection, follow-up question count, confidence.
 
 ## Results (heuristic engine, no LLM key)
