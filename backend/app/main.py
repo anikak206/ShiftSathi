@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import APP_NAME, CORS_ORIGINS, GNANI_API_KEY_ID, LLM_API_KEY
 from .db import init_db
-from .routers import voice, sessions, incidents, dashboard, handover, extract, eval
+from .routers import voice, sessions, incidents, dashboard, handover, extract, eval, insights
 
 import time as _t
 app = FastAPI(title=APP_NAME)
@@ -41,6 +41,7 @@ app.include_router(dashboard.router)
 app.include_router(handover.router)
 app.include_router(extract.router)
 app.include_router(eval.router)
+app.include_router(insights.router)
 
 @app.get("/health")
 def health():

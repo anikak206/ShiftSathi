@@ -40,6 +40,7 @@ export default function History() {
           <option value="low">Low</option>
         </select>
         <button onClick={load} className="bg-amber-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold">Filter</button>
+        <a href="/api/incidents/export/csv" className="bg-slate-700 px-4 py-2 rounded-lg text-sm">Export CSV</a>
       </div>
       <div className="glass rounded-xl overflow-auto">
         <table className="w-full text-sm">

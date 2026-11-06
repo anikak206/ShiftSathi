@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Mic, LayoutDashboard, History, FileText, ClipboardList, Activity } from 'lucide-react';
+import { Mic, LayoutDashboard, History, FileText, ClipboardList, Activity, Brain } from 'lucide-react';
 
 const nav = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/report', label: 'Voice Report', icon: Mic },
   { to: '/history', label: 'Incident History', icon: History },
+  { to: '/insights', label: 'Shift Intelligence', icon: Brain },
   { to: '/handover', label: 'Shift Handover', icon: ClipboardList },
   { to: '/eval', label: 'Evaluation', icon: Activity },
 ];

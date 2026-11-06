@@ -322,5 +322,131 @@
       "category": "vibration",
       "severity": "medium"
     }
+  },
+  {
+    "id": "t37",
+    "transcript": "Machine 23 gearbox oil leak, floor slippery, machine stopped, critical safety.",
+    "expected": {
+      "machine_id": "23",
+      "category": "leak",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t38",
+    "transcript": "Conveyor C-12 belt torn, production stopped, maintenance called.",
+    "expected": {
+      "machine_id": "C-12",
+      "category": "mechanical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t39",
+    "transcript": "Machine 24 motor overheating 105 degree, fan failure, stopped.",
+    "expected": {
+      "machine_id": "24",
+      "category": "overheating",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t40",
+    "transcript": "Pump P-8 seal leak, minor drip, monitored.",
+    "expected": {
+      "machine_id": "P-8",
+      "category": "leak",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t41",
+    "transcript": "Machine 25 electrical panel burnt smell, power off, area evacuated.",
+    "expected": {
+      "machine_id": "25",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t42",
+    "transcript": "Machine 26 vibration and noise, quality affected, running.",
+    "expected": {
+      "machine_id": "26",
+      "category": "vibration",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t43",
+    "transcript": "Machine 27 scheduled lubrication, no issue, routine.",
+    "expected": {
+      "machine_id": "27",
+      "category": "general",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t44",
+    "transcript": "Machine 28 hydraulic pressure drop, pump noise, production slowed.",
+    "expected": {
+      "machine_id": "28",
+      "category": "noise",
+      "severity": "medium"
+    }
+  },
+  {
+    "id": "t45",
+    "transcript": "Machine 29 safety interlock bypassed, operator reported, machine isolated.",
+    "expected": {
+      "machine_id": "29",
+      "category": "safety",
+      "severity": "critical"
+    }
+  },
+  {
+    "id": "t46",
+    "transcript": "Machine 30 conveyor belt worn, replacement scheduled next week.",
+    "expected": {
+      "machine_id": "30",
+      "category": "mechanical",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t47",
+    "transcript": "Machine 31 motor vibration high, bearing damage suspected, stopped.",
+    "expected": {
+      "machine_id": "31",
+      "category": "vibration",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t48",
+    "transcript": "Machine 32 coolant temperature 75 degree, within normal range.",
+    "expected": {
+      "machine_id": "32",
+      "category": "overheating",
+      "severity": "low"
+    }
+  },
+  {
+    "id": "t49",
+    "transcript": "Machine 33 electrical short circuit, no injury, power restored.",
+    "expected": {
+      "machine_id": "33",
+      "category": "electrical",
+      "severity": "high"
+    }
+  },
+  {
+    "id": "t50",
+    "transcript": "Machine 34 unusual noise from gearbox, vibration increasing, monitored.",
+    "expected": {
+      "machine_id": "34",
+      "category": "noise",
+      "severity": "medium"
+    }
   }
 ]
