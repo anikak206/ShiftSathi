@@ -76,6 +76,13 @@ See `backend/.env.example`. Never commit real keys.
 - STT: POST `https://api.vachana.ai/stt/v3` multipart with `audio_file`, fields `language_code`, `preferred_language`, `format=transcribe`, `itn_native_numerals=true`, header `X-API-Key-ID`.
 - TTS: POST `https://api.vachana.ai/api/v1/tts/sse` JSON `{audio_config, model, text, voice}`, header `X-API-Key-ID`. Response is SSE with base64 audio chunks.
 
+## Verification Status
+- Backend tests: 13/13 passing
+- Frontend build: passing
+- Evaluation: 50 scenarios, 91.3% field accuracy (heuristic fallback)
+- Gnani Prisma/Timbre: integrated per official docs; **live API not verified** (no credentials in this environment)
+- Public deployment: not deployed; Docker config provided
+
 ## Safety
 AI never controls machinery. Reports require human confirmation. Missing info is flagged, never guessed.
 
