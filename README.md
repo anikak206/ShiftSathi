@@ -78,3 +78,7 @@ See `backend/.env.example`. Never commit real keys.
 
 ## Safety
 AI never controls machinery. Reports require human confirmation. Missing info is flagged, never guessed.
+
+## Author & Contribution
+
+This project was designed and implemented individually by **Anika** ([@anikak206](https://github.com/anikak206)) for the Gnani AI Great Indian AI Internship Challenge 2026. All code, documentation, tests, and evaluation were authored by the contributor.
