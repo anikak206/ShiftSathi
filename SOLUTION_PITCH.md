@@ -1,4 +1,4 @@
-# ShiftSathi — Solution Pitch
+# ShiftSathi - Solution Pitch
 
 ## Problem
 Factory workers struggle to file structured incident reports: typing is slow, details are missed, and reports mix Hindi/English/Hinglish. Supervisors spend time interpreting unstructured notes.
@@ -22,5 +22,4 @@ React + Vite + Tailwind | FastAPI + SQLAlchemy + SQLite | Gnani Prisma (STT) + G
 - Not deployed to cloud; Docker config provided
 
 ## Author
-Anika (@anikak206) — individual contribution, Gnani AI Great Indian AI Internship Challenge 2026.
-EOF
+Anika (@anikak206) - individual contribution, Gnani AI Great Indian AI Internship Challenge 2026.
