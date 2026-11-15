@@ -1,6 +1,26 @@
-# ShiftSathi — Voice-First Industrial Intelligence Assistant
+<p align="center">
+  <img src="docs/banner.svg" alt="ShiftSathi Banner" width="100%" />
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green) ![React](https://img.shields.io/badge/React-18-61dafb) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tests-13%20passing-brightgreen" />
+  <img src="https://img.shields.io/badge/Eval-91.3%25%20accuracy-orange" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey" />
+</p>
+
+<h3 align="center">Voice-First Industrial Intelligence Assistant</h3>
+<p align="center"><i>Make industrial reporting as simple as a conversation.</i></p>
+
+<p align="center">
+  <a href="https://github.com/anikak206/ShiftSathi">GitHub</a> |
+  <a href="./SOLUTION_PITCH.md">Solution Pitch</a> |
+  <a href="./EVALUATION.md">Evaluation</a> |
+  <a href="./CHANGELOG.md">Changelog</a>
+</p>
 
 ShiftSathi lets factory workers report machine problems by voice. It transcribes speech (Hindi/English/Hinglish) using Gnani Prisma, extracts structured incident fields with an LLM, asks intelligent follow-up questions, reads back a confirmation using Gnani Timbre, and generates a professional incident report plus shift handover. A supervisor dashboard provides analytics and history.
 
