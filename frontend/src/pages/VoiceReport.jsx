@@ -13,29 +13,97 @@ export default function VoiceReport() {
   const [err, setErr] = useState(null);
   const [confirmed, setConfirmed] = useState(null);
   const mediaRef = useRef(null);
-  const chunksRef = useRef([]);
+  const audioCtxRef = useRef(null);
+  const processorRef = useRef(null);
+  const streamRef = useRef(null);
+  const samplesRef = useRef([]);
+
+  function isSecureContextOk() {
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  }
+
+  function encodeWav(samples, sampleRate) {
+    const numChannels = 1;
+    const bitsPerSample = 16;
+    const bytesPerSample = bitsPerSample / 8;
+    const blockAlign = numChannels * bytesPerSample;
+    const byteRate = sampleRate * blockAlign;
+    const dataSize = samples.length * bytesPerSample;
+    const buffer = new ArrayBuffer(44 + dataSize);
+    const view = new DataView(buffer);
+    let off = 0;
+    function writeStr(s) { for (let i = 0; i < s.length; i++) view.setUint8(off++, s.charCodeAt(i)); }
+    writeStr('RIFF');
+    view.setUint32(off, 36 + dataSize, true); off += 4;
+    writeStr('WAVE');
+    writeStr('fmt ');
+    view.setUint32(off, 16, true); off += 4;
+    view.setUint16(off, 1, true); off += 2; // PCM
+    view.setUint16(off, numChannels, true); off += 2;
+    view.setUint32(off, sampleRate, true); off += 4;
+    view.setUint32(off, byteRate, true); off += 4;
+    view.setUint16(off, blockAlign, true); off += 2;
+    view.setUint16(off, bitsPerSample, true); off += 2;
+    writeStr('data');
+    view.setUint32(off, dataSize, true); off += 4;
+    for (let i = 0; i < samples.length; i++) {
+      let s = Math.max(-1, Math.min(1, samples[i]));
+      view.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+      off += 2;
+    }
+    return new Blob([buffer], { type: 'audio/wav' });
+  }
 
   async function startRec() {
+    if (!isSecureContextOk()) {
+      setErr('Microphone not available. Use HTTPS or localhost (secure context required).');
+      return;
+    }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mr = new MediaRecorder(stream);
-      chunksRef.current = [];
-      mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
-      mr.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
-        setAudioBlob(blob);
-        stream.getTracks().forEach(t => t.stop());
+      streamRef.current = stream;
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+      audioCtxRef.current = audioContext;
+      const source = audioContext.createMediaStreamSource(stream);
+      const processor = audioContext.createScriptProcessor(4096, 1, 1);
+      processorRef.current = processor;
+      samplesRef.current = [];
+      processor.onaudioprocess = (e) => {
+        const data = e.inputBuffer.getChannelData(0);
+        samplesRef.current.push(new Float32Array(data));
       };
-      mr.start();
-      mediaRef.current = mr;
+      source.connect(processor);
+      processor.connect(audioContext.destination);
       setRecording(true);
+      setErr(null);
     } catch (e) {
       setErr('Microphone access denied: ' + e.message);
     }
   }
 
   function stopRec() {
-    mediaRef.current?.stop();
+    if (processorRef.current) {
+      processorRef.current.disconnect();
+      processorRef.current = null;
+    }
+    if (audioCtxRef.current) {
+      audioCtxRef.current.close();
+      audioCtxRef.current = null;
+    }
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(t => t.stop());
+      streamRef.current = null;
+    }
+    // flatten samples
+    const total = samplesRef.current.reduce((a, b) => a + b.length, 0);
+    const flat = new Float32Array(total);
+    let off = 0;
+    for (const chunk of samplesRef.current) {
+      flat.set(chunk, off);
+      off += chunk.length;
+    }
+    const blob = encodeWav(flat, 16000);
+    setAudioBlob(blob);
     setRecording(false);
   }
 
@@ -117,13 +185,7 @@ export default function VoiceReport() {
       const audio = new Audio('data:' + res.mime + ';base64,' + res.audio_base64);
       audio.play();
     } catch (e) {
-      // Fallback to browser speech synthesis
-      if ('speechSynthesis' in window) {
-        const u = new SpeechSynthesisUtterance(text);
-        window.speechSynthesis.speak(u);
-      } else {
-        setErr('TTS: ' + e.message);
-      }
+      setErr('TTS: ' + e.message);
     }
   }
 
