@@ -22,6 +22,20 @@
   <a href="./CHANGELOG.md">Changelog</a>
 </p>
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/screenshot-1.png" width="48%" />
+  <img src="docs/screenshots/screenshot-2.png" width="48%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/screenshot-3.png" width="48%" />
+  <img src="docs/screenshots/screenshot-4.png" width="48%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/screenshot-5.png" width="48%" />
+</p>
+
 ShiftSathi lets factory workers report machine problems by voice. It transcribes speech (Hindi/English/Hinglish) using Gnani Prisma, extracts structured incident fields with an LLM, asks intelligent follow-up questions, reads back a confirmation using Gnani Timbre, and generates a professional incident report plus shift handover. A supervisor dashboard provides analytics and history.
 
 ## Architecture
