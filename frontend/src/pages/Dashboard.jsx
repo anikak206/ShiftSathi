@@ -18,7 +18,10 @@ export default function Dashboard() {
   const catData = Object.entries(stats.category_distribution || {}).map(([k,v]) => ({ name: k, value: v }));
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <button onClick={() => { setStats(null); api('/dashboard/stats').then(setStats).catch(e => setErr(e.message)); }} className="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded text-sm">Refresh</button>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card icon={<List />} label="Total Incidents" value={stats.total} />
         <Card icon={<Clock />} label="Open" value={stats.open} />
@@ -61,7 +64,11 @@ export default function Dashboard() {
               <span className={`text-xs px-2 py-1 rounded ${sevColor(i.severity)}`}>{i.severity}</span>
             </div>
           ))}
-          {(!stats.recent || stats.recent.length === 0) && <div className="text-slate-400 text-sm">No incidents yet.</div>}
+          {(!stats.recent || stats.recent.length === 0) && (
+            <div className="text-slate-400 text-sm">
+              No incidents yet. <a href="/report" className="text-amber-400 hover:underline">Report your first incident</a>.
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -294,6 +294,13 @@ export default function VoiceReport() {
         <div className="glass rounded-xl p-6 space-y-2">
           <div className="flex items-center gap-2 text-green-400 font-semibold"><CheckCircle /> Incident Created: {confirmed.id}</div>
           <pre className="text-xs bg-slate-800 p-3 rounded overflow-auto">{JSON.stringify(confirmed, null, 2)}</pre>
+          <div className="flex gap-3 pt-2">
+            <button onClick={() => { setConfirmed(null); setSession(null); setTranscript(''); setAudioBlob(null); }} className="bg-amber-500 text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm">
+              Report Another Incident
+            </button>
+            <a href="/history" className="bg-slate-700 px-4 py-2 rounded-lg text-sm">View in History</a>
+            <a href="/insights" className="bg-slate-700 px-4 py-2 rounded-lg text-sm">View Insights</a>
+          </div>
         </div>
       )}
     </div>
