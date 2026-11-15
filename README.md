@@ -22,12 +22,6 @@
   <a href="./CHANGELOG.md">Changelog</a>
 </p>
 
-## Demo Video
-
-<p align="center">
-  <video src="docs/demo.mp4" controls width="100%"></video>
-</p>
-
 ## Screenshots
 
 <p align="center">
