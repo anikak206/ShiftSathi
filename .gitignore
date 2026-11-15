@@ -8,6 +8,7 @@ venv/
 *.sqlite
 *.sqlite3
 .env
+verify_tts_output.wav
 
 # Node
 node_modules/
